@@ -8,5 +8,4 @@ write markdown at source/_posts/
 
 ## publish
 
-* hexo generate
-* hexo deploy
+hexo deploy -g
