@@ -69,6 +69,24 @@ Time per request:       0.030 [ms] (mean, across all concurrent requests)
 Transfer rate:          6990.15 [Kbytes/sec] received
 ```
 
+### openresty 配置 lor
+
+ab -k -c 100 -n 10000 http://localhost:60004/hello
+
+```
+Concurrency Level:      100
+Time taken for tests:   0.558 seconds
+Complete requests:      10000
+Failed requests:        0
+Keep-Alive requests:    10000
+Total transferred:      2280000 bytes
+HTML transferred:       300000 bytes
+Requests per second:    17933.91 [#/sec] (mean)
+Time per request:       5.576 [ms] (mean)
+Time per request:       0.056 [ms] (mean, across all concurrent requests)
+Transfer rate:          3993.10 [Kbytes/sec] received
+```
+
 ### golang 原生 http 压测
 
 ab -k -c 100 -n 10000 http://localhost:60002/bar
@@ -150,6 +168,21 @@ Running 10s test @ http://localhost:60000/index
   348020 requests in 10.03s, 78.33MB read
 Requests/sec:  34713.01
 Transfer/sec:      7.81MB
+```
+
+### openresty 配置 lor
+
+wrk -t1 -c 100 -d10s http://localhost:60004/hello
+
+```
+Running 10s test @ http://localhost:60004/hello
+  1 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     5.01ms  621.83us  14.66ms   92.35%
+    Req/Sec    20.02k     0.96k   21.35k    78.00%
+  199275 requests in 10.01s, 46.94MB read
+Requests/sec:  19898.67
+Transfer/sec:      4.69MB
 ```
 
 ### golang 原生 http 压测
